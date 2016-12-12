@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: zeppelin
-          image: index.tenxcloud.com/google_containers/zeppelin:v0.5.5_v3
+          image: index.tenxcloud.com/google_containers/zeppelin:v0.5.6_v1
           ports:
             - containerPort: 8080
           resources:
