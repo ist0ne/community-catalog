@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: worker
-        image: gcr.io/google_samples/gb-redisslave:v1
+        image: iaasfree/gb-redisslave:v1
         env:
         - name: GET_HOSTS_FROM
           value: dns
