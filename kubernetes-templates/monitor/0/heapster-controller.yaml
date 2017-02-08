@@ -34,13 +34,13 @@ spec:
             timeoutSeconds: 5
           command:
             - /heapster
-            - --source=kubernetes.summary_api:https://Kubernetes.kubernetes:6443?inClusterConfig=false&kubeletHttps=true&kubeletPort=10250&useServiceAccount=true&auth=
+            - --source=kubernetes.summary_api:https://Kubernetes.kubernetes:6443?inClusterConfig=true&insecure=true
             - --sink=influxdb:http://monitoring-influxdb:8086
         - image: ist0ne/heapster:v1.2.0
           name: eventer
           command:
             - /eventer
-            - --source=kubernetes:https://Kubernetes.kubernetes:6443?inClusterConfig=false&kubeletHttps=true&kubeletPort=10250&useServiceAccount=true&auth=
+            - --source=kubernetes:https://Kubernetes.kubernetes:6443?inClusterConfig=true&insecure=true
             - --sink=influxdb:http://monitoring-influxdb:8086
         - image: ist0ne/addon-resizer:1.6
           name: heapster-nanny
