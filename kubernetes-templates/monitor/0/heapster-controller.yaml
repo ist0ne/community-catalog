@@ -1,16 +1,3 @@
-{% set base_metrics_memory = "140Mi" -%}
-{% set base_metrics_cpu = "80m" -%}
-{% set base_eventer_memory = "190Mi" -%}
-{% set metrics_memory_per_node = 4 -%}
-{% set metrics_cpu_per_node = 0.5|float -%}
-{% set eventer_memory_per_node = 500 -%}
-{% set num_nodes = pillar.get('num_nodes', -1) -%}
-{% set nanny_memory = "90Mi" -%}
-{% set nanny_memory_per_node = 200 -%}
-{% if num_nodes >= 0 -%}
-  {% set nanny_memory = (90 * 1024 + num_nodes * nanny_memory_per_node)|string + "Ki" -%}
-{% endif -%}
-
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -36,7 +23,7 @@ spec:
         scheduler.alpha.kubernetes.io/tolerations: '[{"key":"CriticalAddonsOnly", "operator":"Exists"}]'
     spec:
       containers:
-        - image: index.tenxcloud.com/google_containers/heapster:v1.2.0
+        - image: ist0ne/heapster:v1.2.0
           name: heapster
           livenessProbe:
             httpGet:
@@ -49,21 +36,21 @@ spec:
             - /heapster
             - --source=kubernetes.summary_api:''
             - --sink=influxdb:http://monitoring-influxdb:8086
-        - image: index.tenxcloud.com/google_containers/heapster:v1.2.0
+        - image: ist0ne/heapster:v1.2.0
           name: eventer
           command:
             - /eventer
             - --source=kubernetes:''
             - --sink=influxdb:http://monitoring-influxdb:8086
-        - image: index.tenxcloud.com/google_containers/addon-resizer:1.6
+        - image: ist0ne/addon-resizer:1.6
           name: heapster-nanny
           resources:
             limits:
               cpu: 50m
-              memory: {{ nanny_memory }}
+              memory: 200Mi
             requests:
               cpu: 50m
-              memory: {{ nanny_memory }}
+              memory: 200Mi
           env:
             - name: MY_POD_NAME
               valueFrom:
@@ -75,24 +62,24 @@ spec:
                   fieldPath: metadata.namespace
           command:
             - /pod_nanny
-            - --cpu={{ base_metrics_cpu }}
-            - --extra-cpu={{ metrics_cpu_per_node }}m
-            - --memory={{ base_metrics_memory }}
-            - --extra-memory={{ metrics_memory_per_node }}Mi
+            - --cpu=80m
+            - --extra-cpu=0.5m
+            - --memory=140Mi
+            - --extra-memory=4Mi
             - --threshold=5
             - --deployment=heapster-v1.2.0
             - --container=heapster
             - --poll-period=300000
             - --estimator=exponential
-        - image: index.tenxcloud.com/google_containers/addon-resizer:1.6
+        - image: ist0ne/addon-resizer:1.6
           name: eventer-nanny
           resources:
             limits:
               cpu: 50m
-              memory: {{ nanny_memory }}
+              memory: 200Mi
             requests:
               cpu: 50m
-              memory: {{ nanny_memory }}
+              memory: 200Mi
           env:
             - name: MY_POD_NAME
               valueFrom:
@@ -106,8 +93,8 @@ spec:
             - /pod_nanny
             - --cpu=100m
             - --extra-cpu=0m
-            - --memory={{ base_eventer_memory }}
-            - --extra-memory={{ eventer_memory_per_node }}Ki
+            - --memory=190Mi
+            - --extra-memory=500Ki
             - --threshold=5
             - --deployment=heapster-v1.2.0
             - --container=eventer
