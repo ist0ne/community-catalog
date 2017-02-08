@@ -1,0 +1,5 @@
+name: Elasticsearch Logging
+description: |
+  Reliably and securely take data from any source, in any format, and search, analyze, and visualize it in real time.
+version: elasticsearch-logging-v1
+category: ELK

@@ -1,0 +1,17 @@
+.catalog:
+  name: "Elasticsearch Logging"
+  version: "elasticsearch-logging-v1"
+  description: "Reliably and securely take data from any source, in any format, and search, analyze, and visualize it in real time."
+  questions:
+    - variable: "ELASTICSEARCH_PORT"
+      description: "Unique public port Elasticsearch."
+      label: "Elasticsearch Public Port"
+      type: "int"
+      required: true
+      default: 9200
+    - variable: "KIBANA_PORT"
+      label: "Kibana Public Port"
+      description: "Unique public port for Kibana"
+      type: "int"
+      default: 5601
+      required: true
