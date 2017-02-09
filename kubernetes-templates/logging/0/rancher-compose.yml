@@ -8,10 +8,10 @@
       label: "Elasticsearch Public Port"
       type: "int"
       required: true
-      default: 9200
+      default: 30806
     - variable: "KIBANA_PORT"
       label: "Kibana Public Port"
       description: "Unique public port for Kibana"
       type: "int"
-      default: 5601
+      default: 30807
       required: true
