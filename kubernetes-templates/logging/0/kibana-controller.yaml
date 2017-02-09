@@ -28,8 +28,8 @@ spec:
         env:
           - name: "ELASTICSEARCH_URL"
             value: "http://elasticsearch-logging:9200"
-          - name: "KIBANA_BASE_URL"
-            value: "/"
+          # - name: "KIBANA_BASE_URL"
+          #   value: "/"
         ports:
         - containerPort: 5601
           name: ui
