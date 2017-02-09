@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: fluentd-elasticsearch
-        image: ist0ne/fluentd-elasticsearch:v1.22
+        image: ist0ne/fluentd-elasticsearch:v1.23
         resources:
           limits:
             memory: 200Mi
