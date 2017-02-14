@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: db-master
-        image: d.qianyilc.com/docker_images/qianyisrv-mysql:1
+        image: d.qianyilc.com/docker_images/qianyisrv-mysql:5.7
         env:
         - name: MYSQL_ALLOW_EMPTY_PASSWORD
           value: "1"

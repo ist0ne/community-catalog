@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: db-slave
-        image: d.qianyilc.com/docker_images/qianyisrv-mysql:1
+        image: d.qianyilc.com/docker_images/qianyisrv-mysql:5.7
         env:
         - name: MYSQL_MASTER
           value: ${MYSQL_MASTER_NAME}
