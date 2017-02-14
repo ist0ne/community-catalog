@@ -16,9 +16,7 @@ spec:
       containers:
       - name: worker
         image: d.qianyilc.com/docker_images/qianyisrv-redis:1
-        env:
-        - name: REDIS_MASTER
-          value: ${REDIS_MASTER_NAME}
+        command: ["--slaveof",${REDIS_MASTER_NAME},"7501"]
         ports:
         - containerPort: 7501
         volumeMounts:
