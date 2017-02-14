@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: ${REDIS_SLAVE_NAME}
+  labels:
+    name: ${REDIS_SLAVE_NAME}
+spec:
+  replicas: ${REDIS_SLAVE_REPLICAS}
+  selector:
+    name: ${REDIS_SLAVE_NAME}
+  template:
+    metadata:
+      labels:
+        name: ${REDIS_SLAVE_NAME}
+    spec:
+      containers:
+      - name: worker
+        image: d.qianyilc.com/docker_images/qianyisrv-redis:1
+        env:
+        - name: REDIS_MASTER
+          value: ${REDIS_MASTER_NAME}
+        ports:
+        - containerPort: 7501
+        volumeMounts:
+        - name: data
+          mountPath: /data1/redis
+      volumes:
+      - name: data
+        emptyDir: {}

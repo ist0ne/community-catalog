@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: ${FRONTEND_NAME}
+  labels:
+    name: ${FRONTEND_NAME}
+spec:
+  replicas: ${FRONTEND_REPLICAS}
+  selector:
+    name: ${FRONTEND_NAME}
+  template:
+    metadata:
+      labels:
+        name: ${FRONTEND_NAME}
+    spec:
+      containers:
+      - name: one-plus
+        image: d.qianyilc.com/docker_images/qianyisrv-httpd:3
+        env:
+        - name: DOMAIN_NAME
+          value: ${DOMAIN_NAME}
+        - name: ST_DOMAIN_NAME
+          value: ${ST_DOMAIN_NAME}
+        - name: REDIS_MASTER
+          value: ${REDIS_MASTER_NAME}
+        - name: REDIS_SLAVE
+          value: ${REDIS_SLAVE_NAME}
+        - name: MYSQL_MASTER
+          value: ${MYSQL_MASTER_NAME}
+        - name: MYSQL_SLAVE
+          value: ${MYSQL_SLAVE_NAME}
+        ports:
+        - containerPort: 443
+        volumeMounts:
+        - name: frontend-log-persistent-storage
+          mountPath: /data1/logs
+        - name: frontend-upload-persistent-storage
+          mountPath: /data1/vhosts/${ST_DOMAIN_NAME}/htdocs/upload
+        - name: frontend-st-protect-persistent-storage
+          mountPath: /data1/www/data/${DOMAIN_NAME}/st_protect
+      volumes:
+      - name: frontend-log-persistent-storage
+        emptyDir: {}
+      - name: frontend-upload-persistent-storage
+        emptyDir: {}
+      - name: frontend-st-protect-persistent-storage
+        emptyDir: {}
+

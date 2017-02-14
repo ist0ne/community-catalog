@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: ${MYSQL_SLAVE_NAME}
+  labels:
+    name: ${MYSQL_SLAVE_NAME}
+spec:
+  replicas: ${MYSQL_SLAVE_REPLICAS}
+  selector:
+    name: ${MYSQL_SLAVE_NAME}
+  template:
+    metadata:
+      labels:
+        name: ${MYSQL_SLAVE_NAME}
+    spec:
+      containers:
+      - name: db-slave
+        image: d.qianyilc.com/docker_images/qianyisrv-mysql:1
+        env:
+        - name: MYSQL_MASTER
+          value: ${MYSQL_MASTER_NAME}
+        - name: MYSQL_ALLOW_EMPTY_PASSWORD
+          value: 1
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: data
+        emptyDir: {}
+

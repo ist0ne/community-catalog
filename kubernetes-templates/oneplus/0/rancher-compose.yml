@@ -1,0 +1,56 @@
+.catalog:
+  name: "One Plus"
+  version: "1.0.0"
+  description: "理财师项目--壹加"
+  questions:
+    - variable: "SERVICE_NAME"
+      label: "Service Name"
+      required: true
+      default: "frontend"
+      type: "string"
+    - variable: "SERVICE_PORT"
+      label: "What port to listen on"
+      required: true
+      type: "int"
+      default: 443
+    - variable: "FRONTEND_NAME"
+      label: "Frontend Name"
+      required: true
+      default: "frontend"
+      type: "string"
+    - variable: "FRONTEND_REPLICAS"
+      label: "Replicas for the frontend RC"
+      required: true
+      type: "int"
+      default: 3
+    - variable: "REDIS_MASTER_NAME"
+      label: "Redis Master Name"
+      required: true
+      default: "redis-master"
+      type: "string"
+    - variable: "REDIS_SLAVE_NAME"
+      label: "Redis Slave Name"
+      required: true
+      default: "redis-slave"
+      type: "string"
+    - variable: "REDIS_SLAVE_REPLICAS"
+      label: "Replicas for the redis slave RC"
+      required: true
+      default: 2
+      type: "int"
+    - variable: "MYSQL_MASTER_NAME"
+      label: "MySQL Master Name"
+      required: true
+      default: "mysql-master"
+      type: "string"
+    - variable: "MYSQL_SLAVE_NAME"
+      label: "MySQL Slave Name"
+      required: true
+      default: "mysql-slave"
+      type: "string"
+    - variable: "MYSQL_SLAVE_REPLICAS"
+      label: "Replicas for the MySQL slave RC"
+      required: true
+      default: 2
+      type: "int"
+
