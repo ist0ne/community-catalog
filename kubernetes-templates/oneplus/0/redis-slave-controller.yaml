@@ -19,7 +19,7 @@ spec:
         args: ["--slaveof","$(REDIS_MASTER)","7501"]
         env:
         - name: REDIS_MASTER
-          value: ${REDIS_MASTER_NAME}
+          value: "redis-master"
         ports:
         - containerPort: 7501
         volumeMounts:
