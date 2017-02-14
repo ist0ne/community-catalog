@@ -14,7 +14,7 @@ spec:
         name: ${REDIS_SLAVE_NAME}
     spec:
       containers:
-      - name: worker
+      - name: redis-slave
         image: d.qianyilc.com/docker_images/qianyisrv-redis:1
         args: ["--slaveof","$(REDIS_MASTER)","7501"]
         env:

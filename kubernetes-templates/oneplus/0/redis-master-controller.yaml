@@ -14,7 +14,7 @@ spec:
         name: ${REDIS_MASTER_NAME}
     spec:
       containers:
-      - name: master
+      - name: redis-master
         image: d.qianyilc.com/docker_images/qianyisrv-redis:1
         ports:
         - containerPort: 7501
