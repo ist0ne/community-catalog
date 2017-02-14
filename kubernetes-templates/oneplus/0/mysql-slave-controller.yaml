@@ -20,7 +20,7 @@ spec:
         - name: MYSQL_MASTER
           value: ${MYSQL_MASTER_NAME}
         - name: MYSQL_ALLOW_EMPTY_PASSWORD
-          value: 1
+          value: "1"
         ports:
         - containerPort: 3306
         volumeMounts:
