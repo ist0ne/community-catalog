@@ -18,9 +18,9 @@ spec:
         image: d.qianyilc.com/docker_images/qianyisrv-httpd:3
         env:
         - name: DOMAIN_NAME
-          value: ${DOMAIN_NAME}
+          value: ${FRONTEND_DOMAIN_NAME}
         - name: ST_DOMAIN_NAME
-          value: ${ST_DOMAIN_NAME}
+          value: ${FRONTEND_ST_DOMAIN_NAME}
         - name: REDIS_MASTER
           value: ${REDIS_MASTER_NAME}
         - name: REDIS_SLAVE
