@@ -47,5 +47,4 @@ spec:
       - name: data
         emptyDir: {}
       - name: config
-        configMap:
-          name: mysql-slave
+        emptyDir: {}
