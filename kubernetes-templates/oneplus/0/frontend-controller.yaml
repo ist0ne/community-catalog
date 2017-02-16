@@ -35,9 +35,9 @@ spec:
         - name: frontend-log-persistent-storage
           mountPath: /data1/logs
         - name: frontend-upload-persistent-storage
-          mountPath: /data1/vhosts/${ST_DOMAIN_NAME}/htdocs/upload
+          mountPath: /data1/vhosts/${FRONTEND_ST_DOMAIN_NAME}/htdocs/upload
         - name: frontend-st-protect-persistent-storage
-          mountPath: /data1/www/data/${DOMAIN_NAME}/st_protect
+          mountPath: /data1/www/data/${FRONTEND_DOMAIN_NAME}/st_protect
         resources:
           requests:
             cpu: 1
@@ -56,11 +56,11 @@ spec:
       - name: frontend-upload-persistent-storage
         nfs:
           server: ${NFS_SERVER}
-          path: ${NFS_PATH}
+          path: ${NFS_PATH}/upload
           readOnly: false
       - name: frontend-st-protect-persistent-storage
         nfs:
           server: ${NFS_SERVER}
-          path: ${NFS_PATH}
+          path: ${NFS_PATH}/st_protect
           readOnly: false
 
