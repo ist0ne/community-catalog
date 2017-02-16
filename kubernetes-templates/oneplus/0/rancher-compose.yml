@@ -56,9 +56,11 @@
     - variable: "NFS_SERVER"
       label: "NFS Server IP"
       required: true
+      default: "10.101.1.160"
       type: "string"
     - variable: "NFS_PATH"
       label: "NFS Server share dir"
       required: true
+      required: "/data1/share"
       type: "string"
 
