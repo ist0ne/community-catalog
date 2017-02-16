@@ -54,13 +54,6 @@ spec:
       - name: frontend-log-persistent-storage
         emptyDir: {}
       - name: frontend-upload-persistent-storage
-        nfs:
-          server: ${NFS_SERVER}
-          path: ${NFS_PATH}/upload
-          readOnly: false
+        emptyDir: {}
       - name: frontend-st-protect-persistent-storage
-        nfs:
-          server: ${NFS_SERVER}
-          path: ${NFS_PATH}/st_protect
-          readOnly: false
-
+        emptyDir: {}
