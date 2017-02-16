@@ -61,6 +61,6 @@
     - variable: "NFS_PATH"
       label: "NFS Server share dir"
       required: true
-      required: "/data1/share"
+      default: "/data1/share"
       type: "string"
 
