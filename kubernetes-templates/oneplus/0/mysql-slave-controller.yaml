@@ -26,8 +26,6 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /var/lib/mysql
-        - name: config
-          mountPath: /etc/mysql/conf.d
         resources:
           requests:
             cpu: 1
@@ -45,6 +43,4 @@ spec:
           timeoutSeconds: 1
       volumes:
       - name: data
-        emptyDir: {}
-      - name: config
         emptyDir: {}
