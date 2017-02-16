@@ -56,11 +56,11 @@ spec:
       - name: frontend-upload-persistent-storage
         nfs:
           server: ${NFS_SERVER}
-          path: ${NFS_PATH}/upload
+          path: ${NFS_PATH}
           readOnly: false
       - name: frontend-st-protect-persistent-storage
         nfs:
           server: ${NFS_SERVER}
-          path: ${NFS_PATH}/st_protect
+          path: ${NFS_PATH}
           readOnly: false
 
