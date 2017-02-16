@@ -5,7 +5,7 @@ metadata:
   labels:
     name: ${MYSQL_SLAVE_NAME}
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     name: ${MYSQL_SLAVE_NAME}
   template:
