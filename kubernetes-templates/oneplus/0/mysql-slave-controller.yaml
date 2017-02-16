@@ -17,8 +17,6 @@ spec:
       - name: db-slave
         image: d.qianyilc.com/docker_images/qianyisrv-mysql:5.7
         env:
-        - name: MYSQL_MASTER
-          value: ${MYSQL_MASTER_NAME}
         - name: MYSQL_ALLOW_EMPTY_PASSWORD
           value: "1"
         ports:
@@ -26,21 +24,6 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /var/lib/mysql
-        resources:
-          requests:
-            cpu: 1
-            memory: 1Gi
-        livenessProbe:
-          exec:
-            command: ["mysqladmin", "ping"]
-          initialDelaySeconds: 30
-          timeoutSeconds: 5
-        readinessProbe:
-          exec:
-            # Check we can execute queries over TCP (skip-networking is off).
-            command: ["mysql", "-h", "127.0.0.1", "-e", "SELECT 1"]
-          initialDelaySeconds: 5
-          timeoutSeconds: 1
       volumes:
       - name: data
         emptyDir: {}
