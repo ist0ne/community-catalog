@@ -57,7 +57,7 @@ spec:
         nfs:
           server: ${NFS_SERVER}
           path: "${NFS_PATH}/upload"
-          readOnly: flase
+          readOnly: false
       - name: frontend-st-protect-persistent-storage
         nfs:
           server: ${NFS_SERVER}
