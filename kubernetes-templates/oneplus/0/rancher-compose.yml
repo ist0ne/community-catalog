@@ -53,6 +53,11 @@
       required: true
       default: "mysql-master"
       type: "string"
+    - variable: "MYSQL_SLAVE_NAME"
+      label: "MySQL Slave Name"
+      required: true
+      default: "mysql-slave"
+      type: "string"
     - variable: "NFS_SERVER"
       label: "NFS Server IP"
       required: true
