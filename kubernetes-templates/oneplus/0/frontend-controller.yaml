@@ -44,9 +44,8 @@ spec:
             memory: 1Gi
         livenessProbe:
           httpGet:
-            path: /ping.html
+            path: /
             port: 443
-            host: ${FRONTEND_ST_DOMAIN_NAME}
             scheme: HTTPS
           initialDelaySeconds: 30
           timeoutSeconds: 5
