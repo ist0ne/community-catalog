@@ -21,6 +21,15 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /data1/redis
+        resources:
+          requests:
+            cpu: 1
+            memory: 1Gi
+        livenessProbe:
+          exec:
+            command: ["redis-cli", "-h", "127.0.0.1", "-p", "7501", "info"]
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
       volumes:
       - name: data
         emptyDir: {}
