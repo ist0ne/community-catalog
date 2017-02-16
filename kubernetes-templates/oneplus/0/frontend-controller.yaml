@@ -42,10 +42,25 @@ spec:
           requests:
             cpu: 1
             memory: 1Gi
+        #livenessProbe:
+        #  httpGet:
+        #    path: /ping.html
+        #    port: 443
+        #    host: ${FRONTEND_ST_DOMAIN_NAME}
+        #    scheme: HTTPS
+        #  initialDelaySeconds: 5
+        #  timeoutSeconds: 1
       volumes:
       - name: frontend-log-persistent-storage
         emptyDir: {}
       - name: frontend-upload-persistent-storage
-        emptyDir: {}
+        nfs:
+          server: ${NFS_SERVER}
+          path: ${NFS_PATH}/upload
+          readOnly: false
       - name: frontend-st-protect-persistent-storage
-        emptyDir: {}
+        nfs:
+          server: ${NFS_SERVER}
+          path: ${NFS_PATH}/st_protect
+          readOnly: false
+
